@@ -1,7 +1,7 @@
 {
     "dependencies": {},
     "name": "antibiotic",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "This package is able to filter words of a string and avoid common bypass methods like using different fonts or symboles between the words.",
     "main": "index.js",
     "scripts": {

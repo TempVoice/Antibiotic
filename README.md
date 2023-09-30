@@ -49,5 +49,5 @@ const string = 'ỆᶍǍᶆṔƚÉ ℭ𝔩𝔢𝔞𝔫 𝓾𝓹 𝕥𝕙𝕚𝕤
 const cleanedText = antibiotic.convert(string)
 
 console.log(censoredText)
-// > ExAmPtE Clean up this text
+// > ExAmPlE Clean up this text
 ```
