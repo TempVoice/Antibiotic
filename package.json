@@ -1,8 +1,8 @@
 {
     "dependencies": {},
     "name": "antibiotic",
-    "version": "1.0.5",
-    "description": "This package is able to filter words of a string and avoid common bypass methods like using different fonts or symboles between the words.",
+    "version": "1.1.0",
+    "description": "The right medication to care your sentences from unwanted words by censoring or cleaning them. Strong against common bypass methods like using different fonts symbols between words. 0 dependencies!",
     "main": "index.js",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"

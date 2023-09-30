@@ -1,5 +1,5 @@
-## About
-This package is able to filter words of a string and avoid common workarounds like using different fonts or symbols between words. 0 dependencies!
+## About Antibiotic 💊
+The right medication to care your sentences from unwanted words by censoring or cleaning them. Strong against common bypass methods like using different fonts symbols between words. 0 dependencies!
 
 ## Installation
 ```
@@ -11,7 +11,7 @@ npm i antibiotic
 const { Antibiotic } = require('antibiotic')
 const antibiotic = new Antibiotic();
 
-const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
+const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
 const array = ['https://*', 'censor', 'this']
 
 const censoredText = antibiotic.replace(string, array)

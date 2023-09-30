@@ -1,6 +1,11 @@
 const hieroglyphs = require('./hieroglyphs');
+const chars = { '0': 'o', '9': 'g', '7': 't', '5': 's', '4': 'a', '3': 'e', '1': 'i' };
 
 class Antibiotic {
+    transform(input) {
+        return input.toLowerCase().replace(/[.,:;_+\-*'`!?]/g, '').replace(/([a-z])\1+/g, '$1').replace(/[0793451]/g, char => chars[char]);
+    }
+
     replacement(length, symbol) {
         if (length <= 0) {
             return '';
@@ -32,33 +37,28 @@ class Antibiotic {
     }
 
     replace(originalString, toCensorArray, replacement) {
-        const pattern = toCensorArray
-        const replacements = { '0': 'o', '9': 'g', '7': 't', '5': 's', '4': 'a', '3': 'e', '1': 'i' };
-        const regex = /[.,:;_+\-*'`!?]/g;
+        const pattern = toCensorArray;
         
-        const preparedCensorArray = []
-        for (const word of toCensorArray) {
-            preparedCensorArray.push(this.convert(word).toLowerCase().replace(regex, ''))
-        }
-
-        const preparedArray = originalString.split(' ').map((originalWord) => {
-            const latinizedWord = this.convert(originalWord);
-            const lowercasedWord = latinizedWord.replace(regex, '').toLowerCase().replace(/[0793451]/g, char => replacements[char]);
+        const preparedCensorArray = toCensorArray.map(word => this.transform(this.convert(word)));
         
-            let position = 0
-            const censoredWord = preparedCensorArray.find(toReplace =>
-                { position += 1; return lowercasedWord.includes(toReplace.toLowerCase().replace(regex, '')) }
-            );
+        const preparedArray = originalString.split(' ').map(originalWord => {
+          const latinizedWord = this.convert(originalWord);
+          const lowercasedWord = this.transform(latinizedWord);
         
-            return {
-                original: originalWord,
-                latinized: lowercasedWord,
-                illegal: censoredWord ? censoredWord.replace(regex, '') : undefined,
-                pattern: pattern[position - 1]
-            };
+          let position = 0;
+          const censoredWord = preparedCensorArray.find(toReplace => {
+            position += 1;
+            return lowercasedWord.includes(this.transform(toReplace));
+          });
+        
+          return {
+            original: originalWord,
+            latinized: lowercasedWord,
+            illegal: censoredWord ? this.transform(censoredWord) : undefined,
+            pattern: pattern[position - 1]
+          };
         });
         
-
         const censoredArray = []
         for (const word of preparedArray) {
             if (word.illegal) {
