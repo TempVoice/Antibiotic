@@ -1,17 +1,11 @@
-const { TextHelper } = require("./index")
+const { Antibiotic } = require('./index')
+const antibiotic = new Antibiotic();
 
-const textHelper = new TextHelper();
+const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
+const array = ['https://*', 'censor', 'this']
+const replacement = '*'
 
-const string = "https://discord.gg/tempvoice https://tempvoice.xyz/ cat c4t C--4T, 𝕔𝕒𝕥 𝐜𝐚𝐭 𝓬𝓪𝓽"
-const array = ["*discord.gg", "cat"]
-const replacement = "*"
+const censoredText = antibiotic.convert("ỆᶍǍᶆṔƚÉ áéíóúýčďěňřšťžů") // no replacement value
+console.log(censoredText)
 
-const censoredText = textHelper.censor(string, array, replacement)
-console.log(censoredText) // *****************/tempvoice https://tempvoice.xyz/ *** *** *** *** *** *** *****
-
-// Key features:
-
-// Detects other fonts
-// Detects most common bypass method 
-// Use *word to censor the word and everything before
-// Use word* to censor the word and everything after
+console.log(censoredText)

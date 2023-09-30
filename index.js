@@ -1,16 +1,16 @@
 const hieroglyphs = require('./hieroglyphs');
 
-class TextHelper {
+class Antibiotic {
     replacement(length, symbol) {
         if (length <= 0) {
-            return "";
+            return '';
         }
         
         if (symbol) {
             return symbol.repeat(length)
         } else {
-            const characters = "@*#";
-            let result = "";
+            const characters = '@*#';
+            let result = '';
             
             for (let i = 0; i < length; i++) {
                 const randomIndex = Math.floor(Math.random() * characters.length);
@@ -21,7 +21,7 @@ class TextHelper {
         }
     }
 
-    latinize(str) {
+    convert(str) {
         if (!str) {
           return '';
         }
@@ -31,18 +31,18 @@ class TextHelper {
             .join('');
     }
 
-    censor(originalString, toCensorArray, replacement) {
+    replace(originalString, toCensorArray, replacement) {
         const pattern = toCensorArray
         const replacements = { '0': 'o', '9': 'g', '7': 't', '5': 's', '4': 'a', '3': 'e', '1': 'i' };
-        const regex = /[,:;_+\-*'`!?]/g;
+        const regex = /[.,:;_+\-*'`!?]/g;
         
         const preparedCensorArray = []
         for (const word of toCensorArray) {
-            preparedCensorArray.push(this.latinize(word).toLowerCase().replace(regex, ''))
+            preparedCensorArray.push(this.convert(word).toLowerCase().replace(regex, ''))
         }
 
-        const preparedArray = originalString.split(" ").map((originalWord) => {
-            const latinizedWord = this.latinize(originalWord);
+        const preparedArray = originalString.split(' ').map((originalWord) => {
+            const latinizedWord = this.convert(originalWord);
             const lowercasedWord = latinizedWord.replace(regex, '').toLowerCase().replace(/[0793451]/g, char => replacements[char]);
         
             let position = 0
@@ -65,8 +65,8 @@ class TextHelper {
                 const start = word.latinized.indexOf(word.illegal)
                 const end = start + word.illegal.length
 
-                const before = word.pattern.startsWith("*")
-                const after = word.pattern.endsWith("*")
+                const before = word.pattern.startsWith('*')
+                const after = word.pattern.endsWith('*')
     
                 if (before && after) {
                     censoredArray.push(this.replacement(word.latinized.length, replacement));
@@ -88,11 +88,11 @@ class TextHelper {
             }
         }
 
-        const doubleCheck = censoredArray.some(word => preparedCensorArray.some(toReplace => word.toLowerCase().includes(toReplace.toLowerCase().replace(/\*/g,""))));
-        return doubleCheck ? this.censor(censoredArray.join(" "), preparedCensorArray, replacement) : censoredArray.join(" ")
+        const doubleCheck = censoredArray.some(word => preparedCensorArray.some(toReplace => word.toLowerCase().includes(toReplace.toLowerCase().replace(/\*/g,''))));
+        return doubleCheck ? this.censor(censoredArray.join(' '), preparedCensorArray, replacement) : censoredArray.join(' ')
     }
 }
 
 module.exports = {
-    TextHelper
+    Antibiotic
 }
