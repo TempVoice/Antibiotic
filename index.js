@@ -89,7 +89,7 @@ class Antibiotic {
         }
 
         const doubleCheck = censoredArray.some(word => preparedCensorArray.some(toReplace => word.toLowerCase().includes(toReplace.toLowerCase().replace(/\*/g,''))));
-        return doubleCheck ? this.censor(censoredArray.join(' '), preparedCensorArray, replacement) : censoredArray.join(' ')
+        return doubleCheck ? this.convert(censoredArray.join(' '), preparedCensorArray, replacement) : censoredArray.join(' ')
     }
 }
 
