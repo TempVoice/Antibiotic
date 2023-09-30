@@ -27,6 +27,18 @@ console.log(censoredText)
 // > Here is a sentence that tries to share a fishy link *********************** but dont worry it will get ******ed even when you try to bypass it like **** **** **** or ****
 ```
 
+### Partial Matching
+Use * at the beginning or end of a word for partial replacement
+```js
+const string = 'Carpet | JavaScript | Wholegrain | Together'
+const array = ['*pet', 'java*', '*leg*', 'get']
+const replacement = '*'
+
+const censoredText = antibiotic.replace(string, array, replacement)
+console.log(censoredText)
+// > ****** ********** ********** to***her
+```
+
 ## Convert
 ```js
 const { Antibiotic } = require('antibiotic')
