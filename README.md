@@ -1,5 +1,5 @@
 ## About Antibiotic 💊
-The right medication to care your sentences from unwanted words by censoring or cleaning them. Strong against common bypass methods like using different fonts symbols between words. 0 dependencies!
+The right medication to care your sentences from unwanted words by censoring or cleaning them. Strong against common bypass methods like using different fonts or symbols between words. 0 dependencies!
 
 ## Installation
 ```

@@ -3,7 +3,7 @@ const chars = { '0': 'o', '9': 'g', '7': 't', '5': 's', '4': 'a', '3': 'e', '1':
 
 class Antibiotic {
     transform(input) {
-        return input.toLowerCase().replace(/[.,:;_+\-*'`!?]/g, '').replace(/([a-z])\1+/g, '$1').replace(/[0793451]/g, char => chars[char]);
+        return input.toLowerCase().replace(/[^a-z0-9]/gi, '').replace(/([a-z])\1+/g, '$1').replace(/[0793451]/g, char => chars[char]);
     }
 
     replacement(length, symbol) {
