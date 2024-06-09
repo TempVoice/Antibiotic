@@ -11,8 +11,8 @@ npm i antibiotic
 const { Antibiotic } = require('antibiotic')
 const antibiotic = new Antibiotic();
 
-const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
-const array = ['https://*', 'censor', 'this']
+const originalString = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
+const toCensorArray = ['https://*', 'censor', 'this']
 const replacement = undefined
 const strict = true
 
@@ -22,8 +22,8 @@ console.log(censoredText)
 ```
 ### Custom Replacement Symbol
 ```js
-const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
-const array = ['https://*', 'censor', 'this']
+const originalString = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
+const toCensorArray = ['https://*', 'censor', 'this']
 const replacement = '*'
 const strict = true
 
