@@ -13,30 +13,48 @@ const antibiotic = new Antibiotic();
 
 const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
 const array = ['https://*', 'censor', 'this']
+const replacement = undefined
+const strict = true
 
-const censoredText = antibiotic.replace(string, array)
+const censoredText = antibiotic.replace({ originalString, toCensorArray, replacement, strict })
 console.log(censoredText)
 // > Here is a sentence that tries to share a fishy link #@****@##@*#*#***##@*@# but dont worry it will get ***@@#ed even when you try to bypass it like @#*@ #@@# *@@* or #@**
 ```
 ### Custom Replacement Symbol
 ```js
+const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
+const array = ['https://*', 'censor', 'this']
 const replacement = '*'
+const strict = true
 
-const censoredText = antibiotic.replace(string, array, replacement)
+const censoredText = antibiotic.replace({ originalString, toCensorArray, replacement, strict })
 console.log(censoredText)
 // > Here is a sentence that tries to share a fishy link *********************** but dont worry it will get ******ed even when you try to bypass it like **** **** **** or ****
+```
+
+## No Strict Censoring
+```js
+const string = 'Here is a sentence that tries to share a fishy link https://example.com/login, but dont worry it will get censored even when you try to bypass it like t-h.1.$, thhhhiiiisss, 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.'
+const array = ['https://*', 'censor', 'this']
+const replacement = '#'
+const strict = false
+
+const censoredText = antibiotic.replace({ originalString, toCensorArray, replacement, strict })
+console.log(censoredText)
+// > Here is a sentence that tries to share a fishy link ################### but dont worry it will get ######ed even when you try to bypass it like t-h.1~$, #### 𝔱𝔥𝔦𝔰, 𝕥𝕙𝕚𝕤 or ᴛʜɪꜱ.
 ```
 
 ### Partial Matching
 Use * at the beginning or end of a word for partial replacement
 ```js
-const string = 'Carpet | JavaScript | Wholegrain | Together'
-const array = ['*pet', 'java*', '*leg*', 'get']
+const originalString = 'Carpet | JavaScript | Wholegrain | Together'
+const toCensorArray = ['*pet', 'java*', '*leg*', 'get']
 const replacement = '*'
+const strict = true
 
-const censoredText = antibiotic.replace(string, array, replacement)
+const censoredText = antibiotic.replace({ originalString, toCensorArray, replacement, strict })
 console.log(censoredText)
-// > ****** ********** ********** to***her
+// > ****** | ********** | ********** | to***her
 ```
 
 ## Convert

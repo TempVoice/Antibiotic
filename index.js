@@ -26,9 +26,13 @@ class Antibiotic {
         }
     }
 
-    convert(str) {
+    convert(str, strict) {
         if (!str) {
-          return '';
+            return '';
+        }
+
+        if (!strict) {
+            return str;
         }
 
         return [...str]
@@ -36,13 +40,13 @@ class Antibiotic {
             .join('');
     }
 
-    replace(originalString, toCensorArray, replacement) {
+    replace({ originalString, toCensorArray, replacement, strict }) {
         const pattern = toCensorArray;
         
-        const preparedCensorArray = toCensorArray.map(word => this.transform(this.convert(word)));
+        const preparedCensorArray = toCensorArray.map(word => this.transform(this.convert(word, strict)));
         
         const preparedArray = originalString.split(' ').map(originalWord => {
-          const latinizedWord = this.convert(originalWord);
+          const latinizedWord = this.convert(originalWord, strict);
           const lowercasedWord = this.transform(latinizedWord);
         
           let position = 0;
@@ -89,7 +93,7 @@ class Antibiotic {
         }
 
         const doubleCheck = censoredArray.some(word => preparedCensorArray.some(toReplace => word.toLowerCase().includes(toReplace.toLowerCase().replace(/\*/g,''))));
-        return doubleCheck ? this.convert(censoredArray.join(' '), preparedCensorArray, replacement) : censoredArray.join(' ')
+        return doubleCheck ? this.replace({ originalString: censoredArray.join(' '), toCensorArray: preparedCensorArray, replacement, strict }) : censoredArray.join(' ')
     }
 }
 
