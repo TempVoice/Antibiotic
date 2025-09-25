@@ -1,9 +1,33 @@
 const hieroglyphs = require('./hieroglyphs');
-const chars = { '0': 'o', '9': 'g', '7': 't', '5': 's', '4': 'a', '3': 'e', '1': 'i' };
+const chars = {
+    '0': 'o',
+    '1': 'i',
+    '2': 'z',
+    '3': 'e',
+    '4': 'a',
+    '5': 's',
+    '6': 'b',
+    '7': 't',
+    '8': 'b',
+    '9': 'g',
+    '$': 's',
+    '@': 'a',
+    '!': 'i',
+    '+': 't'
+};
 
 class Antibiotic {
-    transform(input) {
-        return input.toLowerCase().replace(/[^a-z0-9]/gi, '').replace(/([a-z])\1+/g, '$1').replace(/[0793451]/g, char => chars[char]);
+    transform(input, strict) {
+        let out = input
+            .toLowerCase()
+            .replace(/[^a-z0-9]/gi, '')
+            .replace(/[0793451]/g, char => chars[char]);
+
+        if (input.length > 3) {
+            out = out.replace(/([a-z])\1+/g, '$1');
+        }
+
+        return out;
     }
 
     replacement(length, symbol) {
@@ -35,30 +59,28 @@ class Antibiotic {
             return str;
         }
 
-        return [...str]
-            .map((char) => hieroglyphs[char] || char)
-            .join('');
+        return [...str].map((char) => hieroglyphs[char] || char).join('');
     }
 
     replace({ originalString, toCensorArray, replacement, strict }) {
         const pattern = toCensorArray;
         
-        const preparedCensorArray = toCensorArray.map(word => this.transform(this.convert(word, strict)));
+        const preparedCensorArray = toCensorArray.map(word => this.transform(this.convert(word, strict), strict));
         
         const preparedArray = originalString.split(' ').map(originalWord => {
           const latinizedWord = this.convert(originalWord, strict);
-          const lowercasedWord = this.transform(latinizedWord);
+          const lowercasedWord = this.transform(latinizedWord, strict);
         
           let position = 0;
           const censoredWord = preparedCensorArray.find(toReplace => {
             position += 1;
-            return lowercasedWord.includes(this.transform(toReplace));
+            return lowercasedWord.includes(this.transform(toReplace, strict));
           });
         
           return {
             original: originalWord,
             latinized: lowercasedWord,
-            illegal: censoredWord ? this.transform(censoredWord) : undefined,
+            illegal: censoredWord ? this.transform(censoredWord, strict) : undefined,
             pattern: pattern[position - 1]
           };
         });
