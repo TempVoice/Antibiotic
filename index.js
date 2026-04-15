@@ -1,4 +1,4 @@
-const hieroglyphs = require('./hieroglyphs');
+const hieroglyphs = require('./lookalike');
 const chars = {
     '0': 'o',
     '1': 'i',
