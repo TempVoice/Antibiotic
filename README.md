@@ -64,8 +64,8 @@ const antibiotic = new Antibiotic();
 
 const string = 'ỆᶍǍᶆṔƚÉ ℭ𝔩𝔢𝔞𝔫 𝓾𝓹 𝕥𝕙𝕚𝕤 🆃🅴🆇🆃'
 
-const cleanedText = antibiotic.convert(string)
+const cleanedText = antibiotic.convert(string, true)
 
-console.log(censoredText)
+console.log(cleanedText)
 // > ExAmPlE Clean up this text
 ```

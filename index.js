@@ -74,7 +74,7 @@ class Antibiotic {
           let position = 0;
           const censoredWord = preparedCensorArray.find(toReplace => {
             position += 1;
-            return lowercasedWord.includes(this.transform(toReplace, strict));
+            return toReplace !== '' && lowercasedWord.includes(this.transform(toReplace, strict));
           });
         
           return {
