@@ -18,7 +18,7 @@ const strict = true
 
 const censoredText = antibiotic.replace({ originalString, toCensorArray, replacement, strict })
 console.log(censoredText)
-// > Here is a sentence that tries to share a fishy link #@****@##@*#*#***##@*@# but dont worry it will get ***@@#ed even when you try to bypass it like @#*@ #@@# *@@* or #@**
+// > Here is a sentence that tries to share a fishy link ##@@@##@#@#@#@####@ but dont worry it will get @@#@#@ed even when you try to bypass it like @#@# @@## ##@@ #@@@ or @#@@
 ```
 ### Custom Replacement Symbol
 ```js

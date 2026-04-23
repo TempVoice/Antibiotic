@@ -1,4 +1,17 @@
-const weirdToNormalMap = {
+const lookalike = {
+  '0': 'o',
+  '1': 'i',
+  '2': 'z',
+  '3': 'e',
+  '4': 'a',
+  '5': 's',
+  '6': 'b',
+  '7': 't',
+  '8': 'b',
+  '9': 'g',
+  '$': 's',
+  '+': 't',
+
   // Uppercase
   'А': 'A',
   'В': 'B',
@@ -936,4 +949,4 @@ const weirdToNormalMap = {
   '𖦪': 'r',
 };
 
-module.exports = weirdToNormalMap;
+module.exports = lookalike;
